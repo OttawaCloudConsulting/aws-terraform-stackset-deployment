@@ -31,6 +31,7 @@ codepipeline_project_variables = {
     templatepath      = "00-stackset.yml",
     pipelineiampolicy = ["arn:aws:iam::aws:policy/AdministratorAccess"],
     artifactzip       = "my-cool-tool.zip"
+    regions           = "ca-central-1,us-east-1"
 }
 
 codepipeline_project_capabilities = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM,CAPABILITY_NAMED_IAM"

@@ -147,7 +147,7 @@ resource "aws_codepipeline" "CodePipelinePipeline" {
                     PermissionModel = "SERVICE_MANAGED"
                     OrganizationsAutoDeployment = "Enabled"
                     DeploymentTargets = data.aws_organizations_organization.awsorg.roots[0].id
-                    Regions = "ca-central-1,us-east-1"
+                    Regions = var.codepipeline_project_variables.regions
                     FailureTolerancePercentage = 100
                 }
                 input_artifacts = [

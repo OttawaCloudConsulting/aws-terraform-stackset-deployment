@@ -51,6 +51,7 @@ variable "codepipeline_project_variables" {
     templatepath = string
     pipelineiampolicy = list(string)
     artifactzip = string
+    regions = string
   })
   description = "Set of variables specific to the CodePipeline Project"
 }
