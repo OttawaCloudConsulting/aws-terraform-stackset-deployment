@@ -70,6 +70,7 @@ resource "aws_s3_bucket_public_access_block" "S3Bucket" {
   bucket = aws_s3_bucket.S3Bucket.id
   block_public_acls   = true
   block_public_policy = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "S3BucketPolicy" {
