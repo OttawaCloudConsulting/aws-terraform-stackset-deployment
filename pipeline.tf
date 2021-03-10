@@ -22,15 +22,6 @@ output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
 
-#resource "aws_iam_role" "IAMRoleCFN" {
-#    path = "/"
-#    name =  "${var.department.uppercase}-${var.codepipeline_project_variables.projectname}-CodePipelineCloud"
-#    assume_role_policy = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudformation.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}"
-#    managed_policy_arns = var.codepipeline_project_variables.pipelineiampolicy
-#    max_session_duration = 3600
-#    tags = var.standard_tags
-#}
-
 resource "aws_iam_policy" "IAMManagedPolicy" {
     name = "${var.department.uppercase}-${var.codepipeline_project_variables.projectname}-CodePipelineCFN"
     path = "/"
@@ -47,7 +38,7 @@ resource "aws_iam_role" "IAMRoleCodePipeline" {
 }
 
 resource "aws_s3_bucket" "S3Bucket" {
-    bucket      = "${var.department.uppercase}-${data.aws_caller_identity.current.account_id}-${var.codepipeline_project_variables.projectname}"
+    bucket      = "${var.department.lowercase}-${data.aws_caller_identity.current.account_id}-${var.codepipeline_project_variables.projectname}"
     acl         = "private"
     versioning {
       enabled = true
@@ -72,6 +63,7 @@ resource "aws_s3_bucket_public_access_block" "S3Bucket" {
   block_public_acls         = true
   block_public_policy       = true
   restrict_public_buckets   = true
+  ignore_public_acls        = true
 }
 
 resource "aws_s3_bucket_policy" "S3BucketPolicy" {

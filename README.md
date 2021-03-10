@@ -1,5 +1,7 @@
 # Terraform Managed CloudFormation Pipeline
 
+[TOC]
+
 ## Overview
 
 The Terraform Managed Cloudformation Pipeline deploys a set of resources to enable provisioning of CloudFormation Stacksets.

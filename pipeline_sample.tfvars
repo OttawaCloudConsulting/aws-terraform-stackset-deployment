@@ -1,6 +1,6 @@
 s3_kms_key = {
-    alias = "myKMSCMKkey",
-    arn   = "arn:aws:kms:ca-central-1:123456789012:key/a12bf3c4-5678-9d0e-123f-45a6789b0123"
+    alias = "aws/s3",
+    arn   = "arn:aws:kms:ca-central-1:296150522398:key/9e788857-ff51-4e51-95cb-c2be47d36ed7"
 }
 
 # log_bucket = {
@@ -38,6 +38,7 @@ codepipeline_project_capabilities = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM,CAPAB
 
 provider_variables = {
     region      = "ca-central-1",
+    allowed_account_ids = ["1234567890"]
     access_key  = "",
     secret_key  = "",
     token       = ""
