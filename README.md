@@ -1,6 +1,14 @@
 # Terraform Managed CloudFormation Pipeline
 
-[TOC]
+- [Terraform Managed CloudFormation Pipeline](#terraform-managed-cloudformation-pipeline)
+  - [Overview](#overview)
+  - [Design](#design)
+  - [Deployment and Use](#deployment-and-use)
+    - [1 Parameters - tfvars](#1-parameters---tfvars)
+    - [2 Deploy Terraform](#2-deploy-terraform)
+    - [3 Deploy ZIP Artifact for StackSets](#3-deploy-zip-artifact-for-stacksets)
+    - [4 Update KMS Encyrption Keys](#4-update-kms-encyrption-keys)
+  - [Reference Information](#reference-information)
 
 ## Overview
 
