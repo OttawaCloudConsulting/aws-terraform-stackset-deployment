@@ -3,6 +3,7 @@ provider "aws" {
     access_key  = var.provider_variables.access_key
     secret_key  = var.provider_variables.secret_key
     token       = var.provider_variables.token
+    allowed_account_ids = var.provider_variables.allowed_account_ids
 }
 
 data "aws_organizations_organization" "awsorg" {}
@@ -68,9 +69,9 @@ resource "aws_s3_bucket" "S3Bucket" {
 
 resource "aws_s3_bucket_public_access_block" "S3Bucket" {
   bucket = aws_s3_bucket.S3Bucket.id
-  block_public_acls   = true
-  block_public_policy = true
-  restrict_public_buckets = true
+  block_public_acls         = true
+  block_public_policy       = true
+  restrict_public_buckets   = true
 }
 
 resource "aws_s3_bucket_policy" "S3BucketPolicy" {
@@ -120,7 +121,7 @@ resource "aws_codepipeline" "CodePipelinePipeline" {
                 category = "Source"
                 owner = "AWS"
                 configuration = {
-                    PollForSourceChanges = "false"
+                    PollForSourceChanges = "true"
                     S3Bucket = aws_s3_bucket.S3Bucket.id
                     S3ObjectKey = "${var.codepipeline_project_variables.projectnameshort}/${var.codepipeline_project_variables.artifactzip}"
                 }
@@ -149,6 +150,7 @@ resource "aws_codepipeline" "CodePipelinePipeline" {
                     DeploymentTargets = data.aws_organizations_organization.awsorg.roots[0].id
                     Regions = var.codepipeline_project_variables.regions
                     FailureTolerancePercentage = 100
+                    Parameters = var.codepipeline_project_variables.stacksetparams
                 }
                 input_artifacts = [
                     "SourceArtifact"

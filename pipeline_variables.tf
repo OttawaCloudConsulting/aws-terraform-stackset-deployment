@@ -3,7 +3,8 @@ variable "provider_variables" {
     region      = string,
     access_key  = string,
     secret_key  = string,
-    token       = string
+    token       = string,
+    allowed_account_ids = list(string)
   })
 }
 
@@ -45,13 +46,14 @@ variable "department" {
 
 variable "codepipeline_project_variables" {
   type = object({
-    projectname = string
-    projectnameshort = string
-    stacksetname = string
-    templatepath = string
+    projectname       = string
+    projectnameshort  = string
+    stacksetname      = string
+    templatepath      = string
     pipelineiampolicy = list(string)
-    artifactzip = string
-    regions = string
+    artifactzip       = string
+    regions           = string
+    stacksetparams    = string
   })
   description = "Set of variables specific to the CodePipeline Project"
 }
